@@ -1,5 +1,7 @@
 <template>
+  <Loading :active="isLoading" :z-index="1500"></Loading>
   <section class="py-4">
+  <h2 class="p-5"></h2>
   <div class="container-m">
     <div class="row mb-4 mb-md-6" v-if="product">
       <div class="col-md-6 mb-4 mb-md-0">
@@ -103,27 +105,47 @@
       </div>
     </div>
     <hr>
-    <h2 class="text-center font-md-xl fw-bold pb-4 pt-2">相關商品</h2>
+    <h2 class="text-center font-md-xl fw-bold pb-4 pt-2">相關產品</h2>
     <ul class="row gy-4">
-      <li class="col-md-4 col-lg-3"
-        v-for="item in randomProducts" :key="item.id">
-        <a href="#"
-          class="text-dark card none-tx-d"
-          @click.prevent="goProduct(item.id)"
-        >
-          <div class="card-img-top similar-product-img">
-            <img :src="item.imageUrl" :alt="item.title">
-          </div>
-          <div class="card-body">
-            <h4 class="card-text my-2 fw-bold font-m">{{ item.title }}</h4>
-            <del>NT${{ $toCurrency(item.origin_price) }}</del>
-            <p class="font-m mt-2 fw-bold">NT${{ $toCurrency(item.price) }}</p>
-            <button type="button"
-              class="btn btn-secondary card-btn w-100 text-white py-2">
-              查看商品
-            </button>
-          </div>
-        </a>
+      <li
+        class="col-md-4 col-lg-3"
+        v-for="item in randomProducts"
+        :key="item.id"
+      >
+        <div class="card position-relative">
+          <a
+            class="text-dark none-tx-d card-link"
+            @click.prevent="goProduct(item.id)"
+          >
+            <div class="similar-product-img">
+              <img
+                class="card-img-top rounded-0 w-100"
+                :src="item.imageUrl"
+                :alt="item.title">
+            </div>
+            <div class="card-body">
+              <span class="card-title fs-5">
+                {{ item.title }}
+              </span>
+              <p class="card-text text-inner">
+                NT${{ $toCurrency(item.price) }}
+                <span class="text-muted">
+                  <del>NT${{ $toCurrency(item.origin_price) }}</del>
+                </span>
+              </p>
+            </div>
+            <div class="card-lick">
+              <button
+                type="button"
+                class="btn btn-sm w-100 py-2"
+              >
+                <span class="mb-2 mt-2 fs-6">
+                  查看產品
+                </span>
+              </button>
+            </div>
+          </a>
+        </div>
       </li>
     </ul>
   </div>
@@ -141,6 +163,7 @@ export default {
 
   data() {
     return {
+      isLoading: false,
       qty: 1,
       carts: {},
       products: [],
@@ -160,10 +183,12 @@ export default {
     },
     getProducts() {
       const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/products/all`;
+      this.isLoading = true;
       this.$http.get(url).then((res) => {
         if (res.data.success) {
           this.products = res.data.products;
           this.getRandomProducts();
+          this.isLoading = false;
         }
       }).catch((res) => {
         console.log(res.data.message);
@@ -252,7 +277,11 @@ export default {
       if (to.params.id) {
         setTimeout(() => {
           this.getProduct();
-        }, 200);
+          window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+          });
+        }, 700);
       }
     },
     qty: {
@@ -316,7 +345,7 @@ ol, ul {
   cursor: pointer;
 }
 .min-img:hover {
-border: 1px solid rgb(70, 70, 70);
+  border: 1px solid rgb(70, 70, 70);
 }
 .none-tx-d {
   text-decoration: none;

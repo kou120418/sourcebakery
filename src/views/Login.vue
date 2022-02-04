@@ -46,15 +46,15 @@
             </form>
           </div>
         </div>
-        <small class="mt-5 mb-3 text-light">
+        <!-- <small class="mt-5 mb-3 text-light">
           &copy; 2021~∞ -
           <a
             class="text-light text-decoration-none"
             href="https://www.hexschool.com/"
             target="_blank"
-            >六角學院</a
+            >6</a
           >
-        </small>
+        </small> -->
       </div>
     </article>
   </main>

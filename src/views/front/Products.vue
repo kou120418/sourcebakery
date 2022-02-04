@@ -38,7 +38,7 @@
         </li>
       </ul>
     </nav>
-    <div class="row">
+    <div class="row my-5">
       <!-- <div class="col-md-4">
         <div
           class="accordion border border-bottom-0 border-top-0 border-start-0 border-end-0 mb-3"
@@ -144,42 +144,13 @@
                   </span>
                 </button>
               </div>
-              <!-- <button
-                @click="addCart(item.id)"
-                type="button"
-                :disabled="loadingStatus.loadingItem === item.id + 1"
-                class="btn btn-nobeta btn-sm card-lick__button"
-              >
-                <span
-                  v-if="loadingStatus.loadingItem === item.id + 1"
-                  class="material-icons animate-spin"
-                >
-                  cached
-                </span>
-                加到購物車
-              </button>
-
-              <button
-                type="submit"
-                class="btn btn-danger"
-                :disabled="carts.carts <= 1"
-              >
-                <span
-                  v-if="loadingStatus.loadingItem === 2"
-                  class="setDisplay"
-                ><i class="bi bi-arrow-repeat rotating"></i>確認中</span>
-                <span
-                  v-else
-                  class="setDisplay"
-                ><i class="bi bi-check-lg"></i>送出訂單</span>
-              </button> -->
             </div>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="bg-light py-4">
+  <!-- <div class="bg-light py-4">
     <div class="container">
       <div
         class="d-flex flex-column flex-md-row justify-content-between
@@ -197,7 +168,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>

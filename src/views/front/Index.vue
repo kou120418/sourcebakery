@@ -103,7 +103,7 @@
       </div>
     </div>
   </div>
-  <div class="bg-light mt-7">
+  <!-- <div class="bg-light mt-7">
     <div class="container">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -164,7 +164,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- <div class="bg-light py-4">
     <div class="container">
       <div

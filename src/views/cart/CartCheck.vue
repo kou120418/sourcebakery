@@ -2,7 +2,7 @@
   <Loading :active="isLoading" :z-index="1500"></Loading>
   <main id="main" class="container-lg content">
     <h2 class="p-5"></h2>
-    <div class="container">
+    <div class="container my-5">
       <h3 class="mt-4 mb-4">購物車內容</h3>
       <div class="row">
         <div class="col-md-8">
@@ -149,7 +149,7 @@
           </div>
         </div>
       </div>
-      <div class="my-5">
+      <!-- <div class="my-5">
         <h3 class="fw-bold">Lorem ipsum dolor sit amet</h3>
         <div class="swiper-container mt-4 mb-5">
           <div class="swiper-wrapper">
@@ -172,9 +172,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div class="bg-light py-4">
+    <!-- <div class="bg-light py-4">
       <div class="container">
         <div
           class="d-flex flex-column flex-md-row justify-content-between
@@ -191,7 +191,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </main>
 </template>
 
