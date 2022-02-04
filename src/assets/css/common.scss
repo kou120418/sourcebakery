@@ -1,0 +1,10 @@
+@import '~bootstrap/scss/functions';
+@import './helpers/variables';
+
+// sass 對應node_modules
+@import '~bootstrap';
+
+// 自訂CSS
+@import './components/animation';
+@import './components/layout';
+@import './components/nav';
