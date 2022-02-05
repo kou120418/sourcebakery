@@ -10,10 +10,15 @@
       style="top: 0; bottom: 0; left: 0; right: 0; min-height: 100vh;"
     ><!-- style need organize -->
       <div class="row justify-content-center my-auto">
-        <div class="col-md-4 text-center">
-          <h2>關於我們</h2>
+        <div
+          class="col-md-6 text-center"
+          data-aos="fade-zoom-in"
+          data-aos-delay="400"
+          data-aos-duration="600"
+        >
+          <h2>索思烘焙</h2>
           <p class="text-muted mb-0 mt-3">
-            記憶中的美味，都在這裡。
+            記憶中的美好味道，都在這裡。
           </p>
           <!-- <div class="mt-3">
             <router-link to="/about">
@@ -29,10 +34,10 @@
     </div>
   </div>
   <div class="container my-5">
-    <div class="row">
-
+    <div class="row text-center">
+      <h4 class="mt-3 mb-5">美味與安全兼顧的選擇</h4>
     </div>
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-md-6 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1590080876351-941da357bde6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080&q=80"
@@ -43,7 +48,7 @@
         />
       </div>
       <div class="col-md-4 m-auto text-center">
-        <h4 class="mt-4">堅持天然</h4>
+        <h5 class="mt-4">堅持天然</h5>
         <p class="text-muted">
           選擇天然食材，拒絕任何香精、人工食品添加物，為您的健康把關。
         </p>
@@ -60,24 +65,24 @@
         />
       </div>
       <div class="col-md-4 m-auto text-center">
-        <h4 class="mt-4">手工製作</h4>
+        <h5 class="mt-4">手工製作</h5>
         <p class="text-muted">
           從購買食材、篩粉、揉麵皆由專業烘焙師傅親力親為，為您呈上最好的味道。
         </p>
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="mt-5" style="text-align: center;">
-      <h2>你可能會感興趣</h2>
+  <div class="container my-5">
+    <div class="row text-center">
+      <h4 class="mt-3 mb-3">你可能會感興趣</h4>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-4">
       <div class="col-md-4 mt-md-4" v-for="item in recommendProducts" :key="item.id">
         <router-link
           :to="`/product/${item.id}`"
           class="card border-0 mb-4"
         >
-          <div style="overflow: hidden;">
+          <div class="overflow-hidden position-relative">
             <img
               :src="`${item.imageUrl}`"
               class="card-img-top rounded-0"
@@ -90,12 +95,35 @@
               data-aos="fade-zoom-in"
               data-aos-duration="600"
             />
+            <div
+              class="
+                index-img-cover
+                position-absolute
+                w-100 h-100 top-0 left-0
+                text-center
+                bg-dark">
+            </div>
+            <div
+              class="
+                index-img-btn
+                d-flex
+                justify-content-center
+                align-items-center
+                position-absolute
+                w-100 h-100 top-0 left-0
+                text-center
+                text-light"
+            >
+              <button class="btn fs-5">
+                查看產品
+              </button>
+            </div>
           </div>
           <div class="card-body text-center">
-            <h4>{{ item.title }}</h4>
+            <h5>{{ item.title }}</h5>
             <div class="d-flex justify-content-center">
               <p class="card-text text-muted mb-0">
-                {{ item.content }}
+                NT${{ $toCurrency(item.price) }}
               </p>
             </div>
           </div>
@@ -103,90 +131,35 @@
       </div>
     </div>
   </div>
-  <!-- <div class="bg-light mt-7">
-    <div class="container">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row justify-content-center py-7">
-              <div class="col-md-6 text-center">
-                <h3>Lorem ipsum.</h3>
-                <p class="my-5">
-                  “Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                  tempor invidunt ut labore et dolore magna aliquyam erat.”
-                </p>
-                <p><small>—Lorem ipsum dolor sit amet.—</small></p>
-              </div>
-            </div>
-          </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p class="my-5">
-                    “Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                    tempor invidunt ut labore et dolore magna aliquyam erat.”
-                  </p>
-                  <p><small>—Lorem ipsum dolor sit amet.—</small></p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-6 text-center">
-                  <h3>Lorem ipsum.</h3>
-                  <p class="my-5">
-                    “Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                    tempor invidunt ut labore et dolore magna aliquyam erat.”
-                  </p>
-                  <p><small>—Lorem ipsum dolor sit amet.—</small></p>
-                </div>
-              </div>
-            </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </button>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="bg-light py-4">
-    <div class="container">
-      <div
-        class="d-flex
-              flex-column
-              flex-md-row
-              justify-content-between
-              align-items-md-center
-              align-items-start"
+  <div
+    class="
+      bottom-bg-cover
+      subscribe-bg
+      text-light
+      flex-column"
+  >
+    <span class="fs-5 ls-2 fw-normal mb-4">訂閱以接收優惠資訊</span>
+    <Form
+      id="subscribe"
+      class="container row g-2 d-md-flex justify-content-md-center w-60"
+    >
+      <span class="col-12 col-md-8 col-lg-5 m-0 me-md-2 mb-2 mb-md-0">
+        <input
+          type="email"
+          id="email"
+          class="form-control ls-2 ms-auto"
+          placeholder="email@mail.com"
+          inputmode="email"
+          name="email" />
+      </span>
+      <button
+        type="submit"
+        class="btn col-12 col-md-3 col-lg-2"
       >
-        <p class="mb-0 fw-bold">Lorem ipsum dolor sit amet.</p>
-        <div class="input-group w-md-50 mt-md-0 mt-3">
-          <input type="text" class="form-control rounded-0" placeholder="" />
-          <div class="input-group-append">
-            <button class="btn btn-dark rounded-0" type="button" id="search">
-              Lorem ipsum
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+        訂閱
+      </button>
+    </Form>
+  </div>
 </template>
 
 <script>

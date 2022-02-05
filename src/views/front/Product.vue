@@ -1,7 +1,7 @@
 <template>
   <Loading :active="isLoading" :z-index="1500"></Loading>
-  <section class="py-4">
-  <h2 class="p-5"></h2>
+  <section class="py-5">
+  <div class="p-5"></div>
   <div class="container-m">
     <div class="row mb-4 mb-md-6" v-if="product">
       <div class="col-md-6 mb-4 mb-md-0">
@@ -32,12 +32,12 @@
             <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
           </ol>
         </nav>
-        <h2 class="fw-bold h1 mb-1">{{ product.title }}</h2>
+        <h2 class="h1 mb-1">{{ product.title }}</h2>
         <div class="mt-2">
           <del>NT${{ $toCurrency(product.origin_price) }}</del>
         </div>
         <div class="col-3">
-          <p class="h2 fw-bold">NT${{ $toCurrency(product.price) }}</p>
+          <p class="h2">NT${{ $toCurrency(product.price) }}</p>
         </div>
         <p class="mb-0 text-muted text-end"></p>
         <div class="col my-5">
@@ -95,24 +95,33 @@
               </div>
             </div>
           </div>
-          <div class="col-6">
+          <div class="card-lick col-6">
             <a href="#"
-              class="text-nowrap btn btn-dark w-100 py-2"
+              class="text-nowrap btn w-100 py-2"
               @click.prevent="addToCart(this.$route.params.id)"
-            >加入購物車</a>
+            >
+              <span
+                v-if="loadingStatus.loadingItem === 2"
+                class="setDisplay"
+              ><i class="bi bi-arrow-repeat rotating me-1"></i>加入購物車</span>
+              <span
+                v-else
+                class="setDisplay"
+              ><i class="bi bi-cart-plus-fill me-1"></i>加入購物車</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
     <hr>
-    <h2 class="text-center font-md-xl fw-bold pb-4 pt-2">相關產品</h2>
+    <h2 class="text-center font-md-xl pb-4 pt-2">相關產品</h2>
     <ul class="row gy-4">
       <li
         class="col-md-4 col-lg-3"
         v-for="item in randomProducts"
         :key="item.id"
       >
-        <div class="card position-relative">
+        <div class="card p-1 position-relative">
           <a
             class="text-dark none-tx-d card-link"
             @click.prevent="goProduct(item.id)"
@@ -164,15 +173,28 @@ export default {
   data() {
     return {
       isLoading: false,
+      loadingStatus: {
+        loadingItem: '',
+      },
       qty: 1,
       carts: {},
       products: [],
       product: null,
       selectImg: '',
       randomProducts: [],
+      limitMessage: '加入購物車成功，已達購物車每件上限',
     };
   },
   methods: {
+    showAlert(res) {
+      this.$swal(res.data.message);
+    },
+    showErrorAlert(error) {
+      this.$swal({
+        title: error,
+        icon: 'error',
+      });
+    },
     getCartItem() {
       const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`;
       this.$http.get(url).then((res) => {
@@ -183,18 +205,17 @@ export default {
     },
     getProducts() {
       const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/products/all`;
-      this.isLoading = true;
       this.$http.get(url).then((res) => {
         if (res.data.success) {
           this.products = res.data.products;
           this.getRandomProducts();
-          this.isLoading = false;
         }
       }).catch((res) => {
         console.log(res.data.message);
       });
     },
     getProduct() {
+      this.isLoading = true;
       const { id } = this.$route.params;
       const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/product/${id}`;
       this.$http.get(url).then((res) => {
@@ -202,6 +223,9 @@ export default {
           this.product = res.data.product;
           this.getProducts();
           this.selectImg = '';
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 700);
         }
       });
     },
@@ -213,6 +237,7 @@ export default {
     },
     addToCart(id) {
       const cartArray = this.carts.carts;
+      this.loadingStatus.loadingItem = 2;
       const thisItemInCart = cartArray.filter((item) => (item.product_id === id));
       const thisItem = thisItemInCart.shift();
       console.log(thisItem);
@@ -226,12 +251,18 @@ export default {
         };
         this.$http.post(url, data).then((res) => {
           if (res.data.success) {
+            console.log(res);
             console.log(`成功加入${this.qty}個進入購物車`);
             this.qty = 1;
             emitter.emit('update-cart');
+            this.showAlert(res);
             this.getCartItem();
+            this.loadingStatus.loadingItem = '';
           }
-        });
+        })
+          .catch((error) => {
+            this.showErrorAlert(error);
+          });
       } else if ((this.qty + thisItem.qty) >= 20) {
         const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`;
         const data = {
@@ -242,13 +273,19 @@ export default {
         };
         this.$http.post(url, data).then((res) => {
           if (res.data.success) {
+            console.log(res);
             console.log(`成功加入${20 - thisItem.qty}個進入購物車`);
             console.log('已達每件商品購物車上限20個');
             this.qty = 1;
             emitter.emit('update-cart');
+            this.showAlert(res);
             this.getCartItem();
+            this.loadingStatus.loadingItem = '';
           }
-        });
+        })
+          .catch((error) => {
+            this.showErrorAlert(error);
+          });
       }
     },
     getRandomProducts() {
@@ -269,19 +306,16 @@ export default {
     },
     goProduct(id) {
       this.$router.push(`/product/${id}`);
-      this.getProduct();
     },
   },
   watch: {
     $route(to) {
       if (to.params.id) {
-        setTimeout(() => {
-          this.getProduct();
-          window.scrollTo({
-            top: 0,
-            behavior: 'instant',
-          });
-        }, 700);
+        this.getProduct();
+        window.scrollTo({
+          top: 0,
+          behavior: 'instant',
+        });
       }
     },
     qty: {
@@ -363,5 +397,8 @@ ol, ul {
 }
 .qtyBtn {
   font-size: 1.5rem;
+}
+.bi-arrow-repeat {
+  display: inline-block;
 }
 </style>

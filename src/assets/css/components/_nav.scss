@@ -43,12 +43,16 @@
     margin-bottom: 10px;
   }
   & .active {
-    background: rgba(124, 90, 68, 0.8);
+    background: rgb(150, 100, 70);
+    border: 1px solid rgb(150, 100, 70);
+    & span {
+      color: rgb(255, 255, 255);
+    }
   }
   & a {
     text-decoration: none;
     font-size: 1rem;
-    color: #ffffff;
+    color: rgb(150, 100, 70);
     height: 100%;
     width: 100%;
     text-align: center;
@@ -56,15 +60,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(124, 90, 68);
+    border: 1px solid rgb(150, 100, 70);
     border-radius: .25rem;
     transition: 0.3s all;
     &:hover {
-      opacity: 0.8;
+      background: rgb(180, 130, 100);
+      color: rgb(255, 255, 255);
+      & span {
+        color: rgb(255, 255, 255);
+      }
     }
   }
   & span {
-    color: #fff;
+    color: rgb(180, 130, 100);
     position: relative;
     z-index: 2;
   }

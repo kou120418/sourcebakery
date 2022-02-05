@@ -4,6 +4,68 @@
   height: auto;
   object-fit: cover;
 }
+.subscribe-bg {
+  height: 45vh;
+  min-height: 20rem;
+  background-image: url('https://images.unsplash.com/photo-1597528662465-55ece5734101?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80');
+  & span, #subscribe {
+    z-index: 2;
+  }
+  & #subscribe {
+    width: 85%;
+    @media (min-width: 768px) {
+      width: 60%;
+    } 
+    & button {
+      letter-spacing: 2px;
+      border-radius: 0!important;
+      margin: 0;
+      color: #f8f9fa;
+      background-color: rgb(150, 100, 70);
+      &:hover {
+        background-color: rgb(180, 130, 100);
+      }
+    }
+  }
+  &::after {
+    background: #000;
+    opacity: 0.7;
+  }
+}
+.bottom-bg-cover {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+}
+.form-control {
+  background: transparent;
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  text-align: center;
+  color: #f8f9fa;
+  padding: 0.6rem;
+  &:focus {
+    background: none;
+    color: #f8f9fa;
+  }
+  &::placeholder {
+    color:rgba(255, 255, 255, 0.5);
+  }
+}
 .header-nav {
   & .header-nav-link {
     text-align: center;
@@ -71,22 +133,47 @@
   }
 }
 .card {
-  border-width: 2px;
-  border-color: rgb(124, 90, 68);
+  border: 1px solid rgba(180, 130, 100, 0);
   border-radius: 0.25rem;
   overflow: hidden;
   text-decoration: none;
   color: #000;
   cursor: pointer;
+  transition: 0.2s all;
   & .card-img-top {
     max-height: 250px;
     height: 250px;
     object-fit: cover;
+  }
+  & .index-img-cover {
+    opacity: 0;
+    transition: 0.2s all;
+  }
+  & .index-img-btn {
+    opacity: 0;
+    transition: 0.2s all;
+    & button {
+      color: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 0.25rem;
+      &:hover {
+        color: rgb(180, 130, 100);
+        background-color: rgba(255, 255, 255, 0.9);
+      }
     }
+  }
   &:hover {
-    color: rgb(124, 90, 68);
+    border: 1px solid rgba(180, 130, 100, 0.5);
+    border-radius: 0.25rem;
+    color: rgb(180, 130, 100);
     & .card-img-top {
       transform: scale(1.08);
+    }
+    & .index-img-cover {
+      opacity: 0.3;
+    }
+    & .index-img-btn {
+      opacity: 1;
     }
   }
 }
@@ -122,12 +209,19 @@
   & img {
     transition: 0.3s all;
   }
-  & .card-title, .card-text {
+  & .card-title {
     transition: 0.2s all;
-    color: #000;
+    color: rgb(150, 100, 70);
+    font-size: 18px;
+  }
+  & .card-text {
+    transition: 0.2s all;
+    color: #EA0000;
+    font-size: 18px;
   }
   & span del {
     opacity: 0.8;
+    font-size: 14px;
   }
   &:hover {
     & img {
@@ -137,32 +231,43 @@
         transform: none;
       }
     }
-    & .card-title, .card-text {
-      color: rgb(124, 90, 68);
+    & .card-title {
+      color: rgb(180, 130, 100);
+    }
+    & .card-text {
+      color: #ff1919;
     }
   }
 }
 .card-lick {
-  background-color: rgb(124, 90, 68);
-  border-radius: 3px 3px 0 0;
   & button {
-    z-index: 8;
     transition: 0.2s all;
+    border: 1px solid rgb(150, 100, 70);
+    border-radius: 3px;
     & span {
       transition: 0.2s all;
       font-size: 0.75rem;
-      color: #d8d4cf;
+      color: rgb(150, 100, 70);
     }
     &:hover {
       background-color: rgb(180, 130, 100);
-      border-radius: 5px;
       & span {
         font-size: 1rem;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgb(255, 255, 255);
         @include media-breakpoint-down(sm) {
           transform: none;
         }
       }
+    }
+  }
+  & a {
+    background-color: rgb(150, 100, 70);
+    border: 1px solid rgb(150, 100, 70);
+    color: rgb(255, 255, 255);
+    transition: 0.2s all;
+    &:hover {
+      background-color: rgb(180, 130, 100);
+      color: rgb(255, 255, 255);
     }
   }
 }

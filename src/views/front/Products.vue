@@ -1,5 +1,6 @@
 <template>
   <Loading :active="isLoading" :z-index="1500"></Loading>
+  <div class="p-5"></div>
   <div
     class="position-relative d-flex align-items-center justify-content-center"
     style="min-height: 400px;"
@@ -7,8 +8,8 @@
     <div class="position-absolute front-cover">
       <img class="bg-picture" src="https://images.unsplash.com/photo-1532635224-cf024e66d122?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="">
     </div>
-    <h2 class="fw-bold cover-category" v-if="nowCategory">{{ nowCategory }}</h2>
-    <h2 class="fw-bold cover-category" v-else>所有品項</h2>
+    <h2 class="cover-category" v-if="nowCategory">{{ nowCategory }}</h2>
+    <h2 class="cover-category" v-else>所有品項</h2>
   </div>
   <div class="container mt-md-5 mt-3 mb-7">
     <nav class="nav-products">
@@ -38,58 +39,23 @@
         </li>
       </ul>
     </nav>
-    <div class="row my-5">
-      <!-- <div class="col-md-4">
-        <div
-          class="accordion border border-bottom-0 border-top-0 border-start-0 border-end-0 mb-3"
-          id="accordionExample"
-        >
-          <a
-            href="#"
-            class="border-0 bgc-change"
-            aria-current="true"
-            @click.prevent="chooseCategory()"
-            :class="{ active: nowCategory === '' }"
+    <div class="row justify-content-center my-5">
+      <div class="col-11 col-sm-12 col-md-11 col-lg-10 col-xl-11">
+        <ul
+          class="
+            row
+            row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-3
+            list-unstyled gx-3 gy-5"
           >
-            <div
-              class="px-0 py-4
-                     border border-bottom border-top border-start-0 border-end-0
-                     rounded-0"
-            >
-              <div class="d-flex justify-content-between align-items-center pe-1">
-                <h4 class="title-center mb-0">
-                  所有品項
-                </h4>
-              </div>
-            </div>
-          </a>
-          <a
-            href="#"
-            aria-current="true"
-            class="border-0 bgc-change"
-            v-for="category in categories" :key="category.index"
-            @click.prevent="chooseCategory(category)"
-            :class="{ active: category === nowCategory }"
+          <li
+            class="col"
+            v-for="item in filterProducts"
+            :key="item.id"
+            data-aos="fade-zoom-in"
+            data-aos-delay="200"
+            data-aos-duration="600"
           >
-            <div
-              class="px-0 py-4
-                     border border-bottom border-top-0 border-start-0 border-end-0
-                     rounded-0"
-            >
-              <div class="d-flex justify-content-between align-items-center pe-1">
-                <h4 class="title-center mb-0">
-                  {{ category }}
-                </h4>
-                <i class="fas fa-chevron-down"></i>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div> -->
-      <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
-        <ul class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 list-unstyled g-3">
-          <li class="col" v-for="item in filterProducts" :key="item.id">
-            <div class="card position-relative">
+            <div class="card p-2 position-relative">
               <router-link
                 class="text-decoration-none card-link"
                 :to="`/product/${item.id}`"
@@ -102,7 +68,7 @@
                   />
                 </div>
                 <div class="card-body">
-                  <span class="card-title fs-5">
+                  <span class="card-title">
                     {{ item.title }}
                   </span>
                   <p class="card-text text-inner">
@@ -126,21 +92,20 @@
                 <button
                   type="button"
                   @click.prevent="checkProductDetail(item.id)"
-                  class="btn btn-sm w-50 py-2"
+                  class="btn btn-sm w-50 py-2 mx-1"
                 >
                   <span class="mb-2 mt-2 fs-6">
-                    了解更多
+                    查看產品
                   </span>
                 </button>
                 <button
                   type="button"
                   @click.prevent="addToCart(item)"
                   :disabled="loadingStatus.loadingItem === 2"
-                  class="btn btn-sm w-50 py-2"
+                  class="btn btn-sm w-50 py-2 mx-1"
                 >
                   <span class="mb-2 mt-2 fs-6">
-                    <i class="bi bi-cart-plus-fill me-1"></i
-                    >加入購物車
+                    加入<i class="bi bi-cart-plus-fill ms-1"></i>
                   </span>
                 </button>
               </div>
