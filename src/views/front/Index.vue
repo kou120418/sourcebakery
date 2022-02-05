@@ -139,7 +139,7 @@
       flex-column"
   >
     <span class="fs-5 ls-2 fw-normal mb-4">訂閱以接收優惠資訊</span>
-    <Form
+    <div
       id="subscribe"
       class="container row g-2 d-md-flex justify-content-md-center w-60"
     >
@@ -147,18 +147,21 @@
         <input
           type="email"
           id="email"
+          name="Email"
           class="form-control ls-2 ms-auto"
           placeholder="email@mail.com"
+          rules="email|required"
           inputmode="email"
-          name="email" />
+          v-model="email" />
       </span>
       <button
         type="submit"
         class="btn col-12 col-md-3 col-lg-2"
+        @click="onSubmit"
       >
         訂閱
       </button>
-    </Form>
+    </div>
   </div>
 </template>
 
@@ -168,6 +171,7 @@ export default {
   data() {
     return {
       products: [],
+      email: '',
       recommendProducts: [],
     };
   },
@@ -190,6 +194,9 @@ export default {
         this.recommendProducts.push(array[num]);
         this.products.splice(num, 1);
       }
+    },
+    onSubmit() {
+      console.log(this.email);
     },
   },
   mounted() {
