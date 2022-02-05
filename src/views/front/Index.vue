@@ -148,7 +148,7 @@
           type="email"
           id="email"
           name="Email"
-          class="form-control ls-2 ms-auto"
+          class="form-control index-input ls-2 ms-auto"
           placeholder="email@mail.com"
           rules="email|required"
           inputmode="email"
