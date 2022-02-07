@@ -194,6 +194,7 @@
                   type="submit"
                   class="btn btn-danger"
                   :disabled="carts.carts <= 1"
+                  @click="onSubmit"
                 >
                   <span
                     v-if="loadingStatus.loadingItem === 2"
@@ -202,7 +203,7 @@
                   <span
                     v-else
                     class="setDisplay"
-                  ><i class="bi bi-check-lg me-1"></i>送出訂單</span>
+                  ><i class="bi bi-check-lg me-1"></i>確認訂單</span>
                 </button>
               </div>
             </Form>
@@ -266,7 +267,6 @@ export default {
         this.$router.push('/cart/cartconfirm');
       }, 1500);
       emitter.emit('sendForm', this.form);
-      this.$router.push('/cartconfirm');
     },
   },
   mounted() {

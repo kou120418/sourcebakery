@@ -182,7 +182,6 @@ export default {
       product: null,
       selectImg: '',
       randomProducts: [],
-      limitMessage: '加入購物車成功，已達購物車每件上限',
     };
   },
   methods: {
@@ -236,57 +235,28 @@ export default {
       this.qty += 1;
     },
     addToCart(id) {
-      const cartArray = this.carts.carts;
       this.loadingStatus.loadingItem = 2;
-      const thisItemInCart = cartArray.filter((item) => (item.product_id === id));
-      const thisItem = thisItemInCart.shift();
-      console.log(thisItem);
-      if ((this.qty + thisItem.qty) <= 20) {
-        const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`;
-        const data = {
-          data: {
-            product_id: this.product.id,
-            qty: this.qty,
-          },
-        };
-        this.$http.post(url, data).then((res) => {
-          if (res.data.success) {
-            console.log(res);
-            console.log(`成功加入${this.qty}個進入購物車`);
-            this.qty = 1;
-            emitter.emit('update-cart');
-            this.showAlert(res);
-            this.getCartItem();
-            this.loadingStatus.loadingItem = '';
-          }
-        })
-          .catch((error) => {
-            this.showErrorAlert(error);
-          });
-      } else if ((this.qty + thisItem.qty) >= 20) {
-        const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`;
-        const data = {
-          data: {
-            product_id: this.product.id,
-            qty: 20 - thisItem.qty,
-          },
-        };
-        this.$http.post(url, data).then((res) => {
-          if (res.data.success) {
-            console.log(res);
-            console.log(`成功加入${20 - thisItem.qty}個進入購物車`);
-            console.log('已達每件商品購物車上限20個');
-            this.qty = 1;
-            emitter.emit('update-cart');
-            this.showAlert(res);
-            this.getCartItem();
-            this.loadingStatus.loadingItem = '';
-          }
-        })
-          .catch((error) => {
-            this.showErrorAlert(error);
-          });
-      }
+      const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`;
+      const data = {
+        data: {
+          product_id: id,
+          qty: this.qty,
+        },
+      };
+      this.$http.post(url, data).then((res) => {
+        if (res.data.success) {
+          console.log(res);
+          console.log(`成功加入${this.qty}個進入購物車`);
+          this.qty = 1;
+          emitter.emit('update-cart');
+          this.showAlert(res);
+          this.getCartItem();
+          this.loadingStatus.loadingItem = '';
+        }
+      })
+        .catch((error) => {
+          this.showErrorAlert(error);
+        });
     },
     getRandomProducts() {
       this.randomProducts = [];

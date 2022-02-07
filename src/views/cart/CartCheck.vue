@@ -2,7 +2,7 @@
   <Loading :active="isLoading" :z-index="1500"></Loading>
   <main id="main" class="container-lg content">
     <h2 class="p-5"></h2>
-    <div class="container my-5">
+    <div v-if="carts.total > 0" class="container my-5">
       <h3 class="mt-4 mb-4">購物車內容</h3>
       <div class="row">
         <div class="col-md-8">
@@ -145,7 +145,14 @@
                 NT${{ carts.final_total }}
               </p>
             </div>
-            <router-link to="/cart/cartform" class="btn btn-dark w-100 mt-4">前往付款</router-link>
+            <div class="card-lick col-12">
+              <router-link
+                to="/cart/cartform"
+                class="btn w-100 mt-4 text-nowrap"
+              >
+                <span>前往付款</span>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -173,6 +180,44 @@
           </div>
         </div>
       </div> -->
+    </div>
+    <div v-else class="container my-5">
+      <div
+        class="
+          nothing-in-cart__bg
+          nothing-in-cart__bg-setting
+          text-light
+          flex-column"
+        data-aos="fade-zoom-in"
+        data-aos-delay="1000"
+        data-aos-duration="600"
+      >
+        <span
+          class="fs-4 ls-2 fw-normal mb-5"
+          data-aos="fade-zoom-in"
+          data-aos-delay="1500"
+          data-aos-duration="600">購物車內沒有任何產品喔！</span>
+        <div
+          id="nothing-in-cart"
+          class="container row g-2 d-flex justify-content-center w-60"
+        >
+          <router-link
+            :to="'/products'"
+            class="d-flex justify-content-center text-decoration-none"
+          >
+            <button
+              type="submit"
+              class="btn col-6 col-lg-4 scaling py-3"
+              @click="onSubmit"
+              data-aos="zoom-in"
+              data-aos-delay="2000"
+              data-aos-duration="600"
+            >
+              來去逛逛<i class="bi bi-cart2 ms-1"></i>
+            </button>
+          </router-link>
+        </div>
+      </div>
     </div>
     <!-- <div class="bg-light py-4">
       <div class="container">
