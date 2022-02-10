@@ -214,7 +214,7 @@ export default {
         });
     },
     checkProductDetail(id) {
-      this.$router.push({ path: `/product:${id}` });
+      this.$router.push({ path: `/product/${id}` });
     },
   },
   computed: {

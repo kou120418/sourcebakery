@@ -30,18 +30,18 @@
                       class="text-end"
                     >
                       <del v-if="cart.final_total !== cart.total">
-                        總計： {{ $filters.currency(this.cart.total) }} NTD</del
+                        總計： NT${{ toCurrency(this.cart.total) }} NTD</del
                       >
                       <template v-else
                         >總計：
-                        {{ $filters.currency(this.cart.total) }} NTD</template
+                        NT${{toCurrency(this.cart.total) }} NTD</template
                       >
                     </td>
                     <td v-else class="text-end">尚無商品</td>
                   </tr>
                   <tr v-if="cart.final_total !== cart.total">
                     <td colspan="4" class="text-end text-light">
-                      折扣價： {{ $filters.currency(cart.final_total) }} NTD
+                      NT${{ toCurrency(cart.final_total) }} NTD
                     </td>
                   </tr>
                 </tfoot>
