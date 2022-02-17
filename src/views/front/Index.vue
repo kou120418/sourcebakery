@@ -88,7 +88,7 @@
       <div class="col-md-4 mt-md-4" v-for="item in recommendProducts" :key="item.id">
         <router-link
           :to="`/product/${item.id}`"
-          class="card border-0 mb-4"
+          class="card-index border-0 mb-4"
         >
           <div class="overflow-hidden position-relative">
             <img

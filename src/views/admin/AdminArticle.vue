@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading" :z-index="1500"></Loading>
   <div class="container content">
     <div class="modal-content border-0">
       <div class="modal-header bg-primary text-white">
@@ -145,6 +146,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
   data() {
     return {
+      isLoading: false,
       tempArticle: {},
       create_at: '',
       editor: ClassicEditor,
@@ -205,10 +207,12 @@ export default {
       });
     },
     getArticle() {
+      this.isLoading = true;
       const { id } = this.$route.params;
       const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/article/${id}`;
       this.$http.get(url).then((res) => {
         this.tempArticle = res.data.article;
+        this.isLoading = false;
       })
         .catch((error) => {
           this.showErrorAlert(error);
@@ -216,6 +220,7 @@ export default {
     },
     updateArticle(tempArticle) {
       // 進入編輯狀態
+      this.isLoading = true;
       const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/article/${tempArticle.id}`;
       this.$http.put(url, { data: tempArticle }).then((res) => {
         if (res.data.success) {

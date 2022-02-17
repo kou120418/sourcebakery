@@ -56,13 +56,13 @@
           >
             <div class="card card-product p-2">
               <router-link
-                class="text-decoration-none card-link"
                 :to="`/product/${item.id}`"
+                class="text-decoration-none card-link"
               >
                 <div class="overflow-hidden">
                   <img
                     :src="`${item.imageUrl}`"
-                    class="card-img-top rounded-0 w-100"
+                    class="card-img-top rounded-0"
                     alt="..."
                   />
                 </div>

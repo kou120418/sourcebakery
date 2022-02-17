@@ -28,33 +28,37 @@
     >
       <li
         v-for="item in articles" :key="item"
-        class="col-12 col-md-9 col-lg-6 mx-auto mx-lg-0 mb-4"
+        class="col-10 col-md-11 col-lg-6 mx-auto mx-lg-0 mb-4"
       >
-        <div class="card card-articles h-100">
-          <router-link :to="`/article/${item.id}`"
+        <div class="card card-article">
+          <router-link
+            :to="`/article/${item.id}`"
             class="
               d-flex
               flex-column
               text-decoration-none
               stretched-link
-              h-100
+              article-link
             "
           >
-            <div class="row g-0 border-article">
-              <div class="col-md-4 position-relative">
-                <img :src="item.image" alt class="img-cover" />
+            <div class="row g-0 article-border">
+              <div class="article-img-border col-md-4 position-relative overflow-hidden">
+                <img
+                  :src="item.image"
+                  class="article-img-cover rounded-0"
+                  alt />
                 <div class="position-absolute top-0 start-0">
-                  <span class="badge bg-nobeta rounded-0 fs-7">{{
+                  <span class="badge bg-article fs-6">{{
                     item.tag
                   }}</span>
                 </div>
               </div>
               <div class="col-md-8 position-relative">
                 <div class="card-body d-flex flex-column">
-                  <h5 class="card-title mb-4">
+                  <h5 class="article-title mb-4">
                     {{ item.title }}
                   </h5>
-                  <p class="card-text text-inner">
+                  <p class="article-text text-inner">
                     {{ item.description }}
                   </p>
                   <small class="card-text mt-2 text-muted">
@@ -63,9 +67,9 @@
                     }}</time>
                   </small>
                 </div>
-                <div class="position-absolute bottom-0 end-0">
-                  <p class="text-nobeta text-inner mb-0">
-                    觀看詳細<i class="bi bi-arrow-right"></i>
+                <div class="position-absolute bottom-0 end-0 mb-2 me-3">
+                  <p class="article-detail text-inner mb-0">
+                    觀看詳細<i class="bi bi-arrow-right fw-bold ms-1"></i>
                   </p>
                 </div>
               </div>

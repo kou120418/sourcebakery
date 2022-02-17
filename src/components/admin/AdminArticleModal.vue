@@ -31,7 +31,6 @@
                 v-model="newArticle.author"
               />
             </div>
-
             <div class="form-group col-md-4">
               <label for="tag">分類標籤</label>
               <input
@@ -53,9 +52,7 @@
               />
             </div>
           </div>
-
           <hr />
-
           <div class="row mt-3">
             <div class="form-group col-md-3">
               <label for="title">文章標題</label>
@@ -78,7 +75,6 @@
               />
             </div>
           </div>
-
           <div class="row mt-3">
             <div class="form-group col-md-4">
               <div class="form-group">
@@ -100,7 +96,6 @@
                   :alt="newArticle.title"
                 />
               </div>
-
               <label class="btn btn-outline-success btn-sm d-block w-100 mt-3">
                 <input
                   id="upload_img"
@@ -123,7 +118,6 @@
               ></ckeditor>
             </div>
           </div>
-
           <div class="form-group mt-3">
             <div class="form-check">
               <input
@@ -138,7 +132,6 @@
             </div>
           </div>
         </div>
-
         <div class="modal-footer">
           <button
             type="button"
