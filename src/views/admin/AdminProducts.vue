@@ -34,8 +34,8 @@
           <td>{{ item.title }}</td>
           <td>{{ item.description }}</td>
           <td>{{ item.content }}</td>
-          <td>{{ $toCurrency(item.origin_price) }}</td>
-          <td>{{ $toCurrency(item.price) }}</td>
+          <td>{{ $filters.currency(item.origin_price) }}</td>
+          <td>{{ $filters.currency(item.price) }}</td>
           <td>
             <span v-if="item.is_enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>

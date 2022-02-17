@@ -1,6 +1,6 @@
 <template>
   <Loading :active="isLoading" :z-index="1500"></Loading>
-  <div class="p-5"></div>
+  <div class="py-4 px-5"></div>
   <div
     class="position-relative d-flex align-items-center justify-content-center"
     style="min-height: 400px;"
@@ -40,7 +40,7 @@
       </ul>
     </nav>
     <div class="row justify-content-center my-5">
-      <div class="col-11 col-sm-12 col-md-11 col-lg-10 col-xl-11">
+      <div class="col-11 col-sm-12 col-md-12 col-lg-10 col-xl-11">
         <ul
           class="
             row
@@ -52,10 +52,9 @@
             v-for="item in filterProducts"
             :key="item.id"
             data-aos="fade-zoom-in"
-            data-aos-delay="200"
             data-aos-duration="600"
           >
-            <div class="card p-2 position-relative">
+            <div class="card card-product p-2">
               <router-link
                 class="text-decoration-none card-link"
                 :to="`/product/${item.id}`"
@@ -72,9 +71,9 @@
                     {{ item.title }}
                   </span>
                   <p class="card-text text-inner">
-                    NT${{ $toCurrency(item.price) }}
+                    NT${{ $filters.currency(item.price) }}
                     <span class="text-muted">
-                      <del>NT${{ $toCurrency(item.origin_price) }}</del>
+                      <del>NT${{ $filters.currency(item.origin_price) }}</del>
                     </span>
                   </p>
                 </div>
@@ -100,13 +99,18 @@
                 </button>
                 <button
                   type="button"
-                  @click.prevent="addToCart(item)"
-                  :disabled="loadingStatus.loadingItem === 2"
+                  @click.prevent="addToCart(item.id)"
+                  :disabled="loadingStatus.loadingItem === item.id + 1"
                   class="btn btn-sm w-50 py-2 mx-1"
                 >
-                  <span class="mb-2 mt-2 fs-6">
-                    加入<i class="bi bi-cart-plus-fill ms-1"></i>
-                  </span>
+                  <span
+                    v-if="loadingStatus.loadingItem === item.id + 1"
+                    class="mb-2 mt-2 fs-6 setDisplay"
+                  ><i class="bi bi-arrow-repeat rotating me-1"></i>加入</span>
+                  <span
+                    v-else
+                    class="mb-2 mt-2 fs-6 setDisplay"
+                  ><i class="bi bi-cart-plus-fill me-1"></i>加入</span>
                 </button>
               </div>
             </div>
@@ -193,12 +197,12 @@ export default {
       });
       this.categories = [...categories];
     },
-    addToCart(item, qty = 1) {
-      this.loadingStatus.loadingItem = 2;
+    addToCart(id, qty = 1) {
+      this.loadingStatus.loadingItem = id + 1;
       const url = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`;
       const data = {
         data: {
-          product_id: item.id,
+          product_id: id,
           qty,
         },
       };

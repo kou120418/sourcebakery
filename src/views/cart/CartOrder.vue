@@ -1,7 +1,7 @@
 <template>
-  <main id="main" class="container-lg content">
+  <main id="main" class="container content">
     <template class="text-center pt-4" v-if="!this.$route.params.id">
-      <h2>很抱歉，您並未依照正常流程操作</h2>
+      <h2>結帳過程中發生了一些錯誤，請稍後重試</h2>
     </template>
     <router-view />
   </main>
@@ -12,7 +12,7 @@ export default {
   methods: {
     showAlert() {
       this.$swal({
-        title: '很抱歉，請依照正常流程進行操作',
+        title: '結帳過程中發生了一些錯誤，請稍後重試',
         icon: 'error',
       });
     },
@@ -24,7 +24,6 @@ export default {
     },
   },
   mounted() {
-    // console.clear();
     this.check();
   },
 };

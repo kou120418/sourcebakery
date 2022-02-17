@@ -1,5 +1,6 @@
 <template>
   <Loading :active="isLoading" :z-index="1500"></Loading>
+  <div class="py-4 px-5"></div>
   <div
     class="position-relative d-flex align-items-center justify-content-center"
     style="min-height: 400px;"
@@ -7,7 +8,7 @@
     <div class="position-absolute front-cover">
       <img class="bg-picture" src="https://images.unsplash.com/photo-1532635224-cf024e66d122?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="">
     </div>
-    <h2 class="fw-bold cover-category">關於我們</h2>
+    <h2 class="cover-category">關於我們</h2>
   </div>
 </template>
 
@@ -15,7 +16,14 @@
 export default {
   data() {
     return {
+      isLoading: false,
     };
+  },
+  mounted() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
   },
 };
 </script>

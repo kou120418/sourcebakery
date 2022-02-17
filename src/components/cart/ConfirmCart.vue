@@ -1,5 +1,5 @@
 <template>
-  <tr v-for="item in cartitem.carts" :key="item.id">
+  <tr v-for="item in cartItems.carts" :key="item.id">
     <td>
       <figure class="d-sm-flex align-items-center">
         <img
@@ -14,7 +14,7 @@
       </figure>
     </td>
     <td class="text-center">
-      {{ $filters.currency(item.product.price) }}
+      NT${{ $filters.currency(item.product.price) }}
     </td>
     <td class="text-center">
       {{ item.qty }}
@@ -22,7 +22,7 @@
     <td class="text-end">
       <small v-if="item.final_total !== item.total" class="text-success"
         >折扣價：</small
-      >{{ $filters.currency(item.final_total) }} NTD
+      >NT${{ $filters.currency(item.final_total) }} NTD
     </td>
   </tr>
 </template>
@@ -30,7 +30,7 @@
 <script>
 export default {
   props: {
-    cartitem: {
+    cartItems: {
       type: Object,
       default() {
         return {};

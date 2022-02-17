@@ -17,10 +17,11 @@ import 'aos/dist/aos.css';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Loading from 'vue3-loading-overlay';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import 'material-icons/iconfont/material-icons.css';
 
-import toCurrency from './assets/javascript/toCurrency';
+import { date, datetime, currency } from './assets/javascript/filters';
 import router from './router';
 import App from './App.vue';
 
@@ -43,7 +44,11 @@ AOS.init();
 
 const app = createApp(App);
 
-app.config.globalProperties.$toCurrency = toCurrency;
+app.config.globalProperties.$filters = {
+  date,
+  datetime,
+  currency,
+};
 
 app.use(VueAxios, axios);
 
@@ -51,6 +56,7 @@ app.use(router);
 app.mount('#app');
 
 app.use(VueSweetalert2);
+app.use(CKEditor);
 app.component('Loading', Loading);
 app.component('Field', Field);
 app.component('Form', Form);

@@ -33,7 +33,7 @@
               >
                 <p v-if="carts.total" class="mb-0 ms-auto"
                 >
-                  NT${{ $toCurrency(item.product.price) }} / {{ item.product.unit }}
+                  NT${{ $filters.currency(item.product.price) }} / {{ item.product.unit }}
                 </p>
                 <p v-else class="mb-0 ms-auto"
                 >
@@ -48,7 +48,9 @@
               <td
                 class="border-0 align-middle"
               >
-                <p v-if="carts.total" class="mb-0 ms-auto">NT${{ $toCurrency(item.total) }}</p>
+                <p v-if="carts.total" class="mb-0 ms-auto">
+                  NT${{ $filters.currency(item.total) }}
+                </p>
                 <p v-else class="mb-0 ms-auto">NT${{ item.total }}</p>
               </td>
             </tr>
@@ -59,7 +61,7 @@
                 <h4>合計金額：</h4>
               </td>
               <td>
-                <h5 v-if="carts.total">NT${{ $toCurrency(carts.total) }}</h5>
+                <h5 v-if="carts.total">NT${{ $filters.currency(carts.total) }}</h5>
                 <h5 v-else>NT${{ carts.total }}</h5>
               </td>
             </tr>
@@ -194,16 +196,18 @@
                   type="submit"
                   class="btn btn-danger"
                   :disabled="carts.carts <= 1"
-                  @click="onSubmit"
                 >
                   <span
-                    v-if="loadingStatus.loadingItem === 2"
                     class="setDisplay"
-                  ><i class="bi bi-arrow-repeat rotating me-1"></i>確認中</span>
-                  <span
-                    v-else
-                    class="setDisplay"
-                  ><i class="bi bi-check-lg me-1"></i>確認訂單</span>
+                  >
+                    <i
+                      v-if="loadingStatus.loadingItem === 2"
+                      class="bi bi-arrow-repeat rotating me-1">
+                    </i><i
+                      v-else
+                      class="bi bi-check-lg me-1">
+                    </i>送出表單
+                  </span>
                 </button>
               </div>
             </Form>
@@ -218,6 +222,15 @@
 import emitter from '@/assets/javascript/emitter';
 
 export default {
+  name: 'CartForm',
+  props: {
+    propsForm: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
   data() {
     return {
       isLoading: false,
@@ -263,10 +276,10 @@ export default {
     },
     onSubmit() {
       this.loadingStatus.loadingItem = 2;
+      emitter.emit('sendForm', this.form);
       setTimeout(() => {
         this.$router.push('/cart/cartconfirm');
       }, 1500);
-      emitter.emit('sendForm', this.form);
     },
   },
   mounted() {

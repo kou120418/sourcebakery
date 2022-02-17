@@ -27,6 +27,10 @@ const routes = [
         },
       },
       {
+        path: 'article/:id',
+        component: () => import('../views/front/Article.vue'),
+      },
+      {
         path: 'products',
         component: () => import('../views/front/Products.vue'),
         meta: {
@@ -39,7 +43,7 @@ const routes = [
       },
       {
         path: 'contact',
-        component: () => import('../views/Contact.vue'),
+        component: () => import('../views/front/Contact.vue'),
         meta: {
           title: '聯繫我們',
         },
@@ -51,7 +55,7 @@ const routes = [
     component: () => import('../views/cart/Cart.vue'),
     children: [
       {
-        path: '/cart',
+        path: '',
         component: () => import('../views/cart/CartCheck.vue'),
         meta: {
           title: '購物車內容',
@@ -72,11 +76,30 @@ const routes = [
         },
       },
       {
-        path: 'cartpayment',
-        component: () => import('../views/cart/CartPayment.vue'),
+        path: '/cartorder',
+        component: () => import('../views/cart/CartOrder.vue'),
         meta: {
           title: '完成下單',
         },
+        children: [
+          {
+            path: '/cartorder/:id',
+            component: () => import('../views/cart/CartOrderFinished.vue'),
+          },
+        ],
+      },
+      {
+        path: '/cartpayment',
+        component: () => import('../views/cart/CartPayment.vue'),
+        meta: {
+          title: '完成付款',
+        },
+        children: [
+          {
+            path: '/cartpayment/:id',
+            component: () => import('../views/cart/CartPaymentCompleted.vue'),
+          },
+        ],
       },
     ],
   },
@@ -92,7 +115,7 @@ const routes = [
     component: () => import('../views/admin/Admin.vue'),
     children: [
       {
-        path: '/admin',
+        path: '',
         component: () => import('../views/admin/AdminIndex.vue'),
         meta: {
           title: '後台首頁',
@@ -125,6 +148,10 @@ const routes = [
         meta: {
           title: '文章設定',
         },
+      },
+      {
+        path: 'article/:id',
+        component: () => import('../views/admin/AdminArticle.vue'),
       },
     ],
   },

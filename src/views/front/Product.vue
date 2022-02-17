@@ -34,10 +34,10 @@
         </nav>
         <h2 class="h1 mb-1">{{ product.title }}</h2>
         <div class="mt-2">
-          <del>NT${{ $toCurrency(product.origin_price) }}</del>
+          <del>NT${{ $filters.currency(product.origin_price) }}</del>
         </div>
         <div class="col-3">
-          <p class="h2">NT${{ $toCurrency(product.price) }}</p>
+          <p class="h2">NT${{ $filters.currency(product.price) }}</p>
         </div>
         <p class="mb-0 text-muted text-end"></p>
         <div class="col my-5">
@@ -121,7 +121,7 @@
         v-for="item in randomProducts"
         :key="item.id"
       >
-        <div class="card p-1 position-relative">
+        <div class="card card-product p-1">
           <a
             class="text-dark none-tx-d card-link"
             @click.prevent="goProduct(item.id)"
@@ -137,9 +137,9 @@
                 {{ item.title }}
               </span>
               <p class="card-text text-inner">
-                NT${{ $toCurrency(item.price) }}
+                NT${{ $filters.currency(item.price) }}
                 <span class="text-muted">
-                  <del>NT${{ $toCurrency(item.origin_price) }}</del>
+                  <del>NT${{ $filters.currency(item.origin_price) }}</del>
                 </span>
               </p>
             </div>
@@ -367,8 +367,5 @@ ol, ul {
 }
 .qtyBtn {
   font-size: 1.5rem;
-}
-.bi-arrow-repeat {
-  display: inline-block;
 }
 </style>

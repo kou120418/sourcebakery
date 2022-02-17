@@ -12,23 +12,31 @@
       <div class="row justify-content-center my-auto">
         <div
           class="col-md-6 text-center"
-          data-aos="fade-zoom-in"
-          data-aos-delay="400"
-          data-aos-duration="600"
         >
-          <h2>索思烘焙</h2>
-          <p class="text-muted mb-0 mt-3">
-            記憶中的美好味道，都在這裡。
-          </p>
-          <!-- <div class="mt-3">
+          <h2
+            data-aos="fade-zoom-in"
+            data-aos-delay="500"
+            data-aos-duration="600">索思烘焙</h2>
+          <p
+            class="text-dark mb-0 mt-3"
+            data-aos="fade-zoom-in"
+            data-aos-delay="1000"
+            data-aos-duration="600"
+          >記憶中的美好味道，都在這裡</p>
+          <div
+            class="mt-4"
+            data-aos="fade-zoom-in"
+            data-aos-delay="1500"
+            data-aos-duration="600"
+          >
             <router-link to="/about">
               <button
-                class="btn btn-outline-dark rounded-2"
+                class="btn btn-outline-dark rounded-2 banner-btn"
               >
                 了解更多
               </button>
             </router-link>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -123,7 +131,7 @@
             <h5>{{ item.title }}</h5>
             <div class="d-flex justify-content-center">
               <p class="card-text text-muted mb-0">
-                NT${{ $toCurrency(item.price) }}
+                NT${{ $filters.currency(item.price) }}
               </p>
             </div>
           </div>
@@ -185,6 +193,10 @@ export default {
           this.products = res.data.products;
           this.getRandomRecommend(this.products, 3);
           console.log(this.recommendProducts);
+          window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+          });
         }
       });
     },

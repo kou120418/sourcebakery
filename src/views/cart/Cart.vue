@@ -1,6 +1,8 @@
 <template>
   <Navbar></Navbar>
-  <router-view/>
+  <div class="container-fluid pb-5 bg-01">
+    <router-view :props-form="tempForm" />
+  </div>
   <Footer></Footer>
 </template>
 
@@ -16,16 +18,7 @@ export default {
   name: 'Cart',
   data() {
     return {
-      tempForm: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: '',
-          payment_method: '',
-        },
-        message: '',
-      },
+      tempForm: null,
     };
   },
   components: {
@@ -39,7 +32,7 @@ export default {
   },
   unmounted() {
     emitter.off('sendForm', (data) => {
-      this.tempform = data;
+      this.tempForm = data;
     });
   },
 };

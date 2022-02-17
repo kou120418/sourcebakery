@@ -1,5 +1,6 @@
 <template>
   <Loading :active="isLoading" :z-index="1500"></Loading>
+  <div class="py-4 px-5"></div>
   <div
     class="position-relative d-flex align-items-center justify-content-center"
     style="min-height: 400px;"
@@ -7,10 +8,10 @@
     <div class="position-absolute front-cover">
       <img class="bg-picture" src="https://images.unsplash.com/photo-1532635224-cf024e66d122?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="">
     </div>
-    <h2 class="fw-bold cover-category">最新消息</h2>
+    <h2 class="cover-category">最新消息</h2>
   </div>
   <div class="container mt-md-5 mt-3 mb-7">
-    <ul v-if="articles = []"
+    <ul v-if="this.articles.length < 1"
       class="list-unstyled row"
       data-aos="fade-zoom-in"
       data-aos-duration="1000"
@@ -29,7 +30,7 @@
         v-for="item in articles" :key="item"
         class="col-12 col-md-9 col-lg-6 mx-auto mx-lg-0 mb-4"
       >
-        <div class="card h-100 card-articles">
+        <div class="card card-articles h-100">
           <router-link :to="`/article/${item.id}`"
             class="
               d-flex
@@ -39,7 +40,7 @@
               h-100
             "
           >
-            <div class="row g-0">
+            <div class="row g-0 border-article">
               <div class="col-md-4 position-relative">
                 <img :src="item.image" alt class="img-cover" />
                 <div class="position-absolute top-0 start-0">
@@ -64,9 +65,7 @@
                 </div>
                 <div class="position-absolute bottom-0 end-0">
                   <p class="text-nobeta text-inner mb-0">
-                    觀看詳細<span class="material-icons mb-1">
-                      arrow_forward
-                    </span>
+                    觀看詳細<i class="bi bi-arrow-right"></i>
                   </p>
                 </div>
               </div>
@@ -88,7 +87,7 @@ export default {
   data() {
     return {
       isLoading: false,
-      articles: [],
+      articles: {},
       pagination: {},
     };
   },
@@ -110,6 +109,7 @@ export default {
           const { articles, pagination } = res.data;
           console.log(res);
           this.articles = articles;
+          console.log(this.articles);
           this.pagination = pagination;
           this.isLoading = false;
         }
@@ -124,7 +124,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .front-cover {
   top: 0;
   bottom: 0;
@@ -143,5 +143,16 @@ export default {
   min-width: 1200px;
   height: auto;
   transform: translateY(-50%);
+}
+
+.img-cover {
+  // object-position: center top;
+  // object-fit: cover;
+  height: 5vw;
+  max-height: 400px;
+  min-height: 175px;
+  width: 100%;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
 </style>

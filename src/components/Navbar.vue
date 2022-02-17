@@ -45,12 +45,12 @@
                 to="/about">關於我們
               </router-link>
             </li> -->
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <router-link
                 class="nav-link me-4 nav-text-color header-nav-link fs-5"
                 to="/articles">最新消息
               </router-link>
-            </li> -->
+            </li>
             <li class="nav-item">
               <router-link
                 class="nav-link me-4 nav-text-color header-nav-link fs-5"
