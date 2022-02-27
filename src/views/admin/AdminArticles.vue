@@ -7,27 +7,29 @@
         新增文章
       </button>
     </div>
-    <div class="row mt-3">
+    <div class="row justify-content-center mt-3">
       <div
         v-for="item in articles"
         :key="item"
-        class="col-12 col-md-6 col-lg-3 mb-4"
+        class="col-10 col-md-6 col-lg-5 col-xl-4 mb-4"
       >
         <div class="card h-100">
           <h5 class="card-header min-vh-75 d-flex align-items-center">
             {{ item.title }}
           </h5>
-          <img :src="item.image" alt class="card-img-top img-cover" />
+          <div class="article-img-block">
+            <img :src="item.image" alt class="article-img" />
+          </div>
           <div class="card-body d-flex flex-column justify-content-end">
             <span class="badge bg-primary mb-1">{{ item.tag }}</span>
-            <h5 class="card-title">
+            <h5 class="card-title mt-1 fs-6">
               {{ item.description
               }}<span v-if="item.isPublic">
                 <i class="bi bi-check-circle-fill"></i>
               </span>
             </h5>
             <p class="card-subtitle">作者：{{ item.author }}</p>
-            <small class="card-text mb-2 text-muted">
+            <small class="card-text text-muted">
               貼文日期：{{ $filters.date(item.create_at) }}
             </small>
             <div class="btn-group w-100 mt-3">

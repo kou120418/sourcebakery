@@ -21,33 +21,28 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav px-3">
           <li class="nav-item">
-            <router-link to="/admin"
-              class="nav-link fs-5"
-              >首頁<span class="text-uppercase">admin</span></router-link
+            <router-link to="/admin" class="nav-link me-4 fs-5"
+              >首頁</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link to="/admin/products"
-              class="nav-link fs-5"
-              >商品列表<span class="text-uppercase">products</span></router-link
+            <router-link to="/admin/products" class="nav-link me-4 fs-5"
+              >商品列表</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link to="/admin/coupon"
-              class="nav-link fs-5"
-              >優惠券設定<span class="text-uppercase">coupon</span></router-link
+            <router-link to="/admin/coupon" class="nav-link me-4 fs-5"
+              >優惠券設定</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link to="/admin/orders"
-              class="nav-link fs-5"
-              >訂單列表<span class="text-uppercase">orders</span></router-link
+            <router-link to="/admin/orders" class="nav-link me-4 fs-5"
+              >訂單列表</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link to="/admin/articles"
-              class="nav-link fs-5"
-              >文章列表<span class="text-uppercase">articles</span></router-link
+            <router-link to="/admin/articles" class="nav-link me-4 fs-5"
+              >文章列表</router-link
             >
           </li>
         </ul>

@@ -2,22 +2,24 @@
   <Loading :active="isLoading" :z-index="1500"></Loading>
   <section class="py-5">
   <div class="p-5"></div>
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <router-link class="text-light" to="/">首頁</router-link>
-      </li>
-      <li class="breadcrumb-item">
-        <router-link class="text-light" to="/articles">最新消息</router-link>
-      </li>
-      <li class="breadcrumb-item text-light active" aria-current="page">
-        {{ article.title }}
-      </li>
-    </ol>
-  </nav>
-  <div class="container col-12 col-lg-9 col-xl-7 pb-5 bg-01">
+  <div class="container col-12 col-lg-8 col-xl-7 col-xxl-6">
+    <nav class="container-lg" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <router-link class="text-muted" to="/">首頁</router-link>
+        </li>
+        <li class="breadcrumb-item">
+          <router-link class="text-muted" to="/articles">最新消息</router-link>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          {{ article.title }}
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="container col-12 col-lg-8 col-xl-7 col-xxl-6 pb-5 bg-01">
     <main id="main" class="container-lg content">
-      <h2 class="pt-4 text-light">{{ article.title }}</h2>
+      <h2 class="pt-4">{{ article.title }}</h2>
       <div class="row my-4">
         <div class="col-12">
           <div class="article-post">

@@ -1,0 +1,13 @@
+.article-img-block {
+  max-height: 300px;
+  & .article-img {
+    display: block;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: center;
+  }
+}

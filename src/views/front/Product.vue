@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-white px-0 mb-0 py-3">
             <li class="breadcrumb-item">
@@ -42,20 +42,20 @@
         <p class="mb-0 text-muted text-end"></p>
         <div class="col my-5">
           <div class="row my-4">
-            <div class="col-3 bdr">
+            <div class="col-2 bdr">
               <p>商品說明</p>
             </div>
-            <div class="col-9">
+            <div class="col-10">
               <p style="margin: 0;">
                 {{ product.description }}
               </p>
             </div>
           </div>
           <div class="row my-4">
-            <div class="col-3 bdr">
+            <div class="col-2 bdr">
               <p style="margin: 0;">商品規格</p>
             </div>
-            <div class="col-9">
+            <div class="col-10">
               <p>
                 {{ product.content }}
               </p>

@@ -48,7 +48,7 @@
     <div class="row mt-3">
       <div class="col-md-6 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1590080876351-941da357bde6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080&q=80"
+          src="https://images.unsplash.com/photo-1627735483792-233bf632619b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2085&q=80"
           alt=""
           class="img-fluid index-middle-img rounded-0 w-100"
           data-aos="fade-zoom-in"
